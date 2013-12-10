@@ -66,7 +66,7 @@
 	}elseif (strpos($current_url, "cdn-dev.triggerglobal.com")){  	
 	   	$cdn = 	"http://cdn-dev.triggerglobal.com/sony/americanhustle/gif_generator/cdn/"; 
 		$debugging = true;
-	}elseif (strpos($current_url, ".local/")){  	
+	}elseif (strpos($current_url, ".local/") || strpos($current_url, "hammerlabs.com/")){  	
 	   	$cdn = "../cdn/";
 		$debugging = true;   
 	}else {  	

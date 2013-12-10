@@ -26,9 +26,12 @@
 	?>  
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>American Hustle Gif Creator</title> 
+	<title>Pompeii Gif Creator</title> 
+    <meta name="viewport" content="<?php echo $view_port; ?>">
+
 	<link href='http://fonts.googleapis.com/css?family=Baumans|Raleway' rel='stylesheet' type='text/css'>  
 	<link href="js/libraries/video-js/video-js.css" rel="stylesheet" type="text/css">  
+	<link rel="stylesheet" href="css/theme.css" />  
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />  
 	
   	<script type="text/javascript">
@@ -48,10 +51,9 @@
 	<script src="js/libraries/jquery-1.9.1.js" type="text/javascript"></script>  
 	<script src="js/libraries/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>  
 	<script src="js/libraries/TweenMax.min.js" type="text/javascript"></script> 
-	
 	<script src="js/libraries/modernizr.js" type="text/javascript"></script>
-	
 	<script src="js/site/site.js" type="text/javascript"></script>     
+	<script src="js/site/lang.js" type="text/javascript"></script>     
 	
 	<?
 	//phpinfo()
@@ -69,7 +71,6 @@
 		  var s_code=s.t();if(s_code)document.write(s_code) 
 		</script>   
 	</div> 
-	
 -->
    
 </body>

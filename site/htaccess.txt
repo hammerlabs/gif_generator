@@ -1,4 +1,0 @@
-Options -Indexes      
-# Use PHP 5.3
-AddType application/x-httpd-php53 .php
-
