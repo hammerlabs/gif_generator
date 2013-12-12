@@ -1,0 +1,174 @@
+html {
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+body {
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	font-family: @font1;
+}
+/*shared*/
+.content_font {
+	font-family: @font2;
+	color: #a4aaac;
+}
+.step {
+	position: absolute;
+	width: @video_width; /*calc*/
+	height: @video_height + 200; /*calc*/
+	margin: 0px auto 30px;
+}
+.step_desc {
+	font-size: 16px;
+	color: #959595;
+	margin: 0px auto 30px;
+}
+.step_content {
+	width: @video_width; /*calc*/
+	height: @video_height; /*calc*/
+	margin: 0px auto 30px;
+}
+.step_nav {
+	width: @video_width; /*calc*/
+	height: 100px;
+	margin: 0px auto 30px;
+}
+.step_btn {
+	background-color: #5A5A5A;
+	padding: 8px;
+	font-size: 18px;
+	color: #FFF;
+	text-align: center;
+	width: 360px; /*calc*/
+	margin: 0px auto 30px;
+	cursor: pointer;
+	border: 2px solid rgba(255, 255, 255, .4);
+	background-color: rgba(24, 29, 30, .5);
+}
+.float_left {
+	float: left;
+}
+.float_right {
+	float: right;
+}
+/* shell */
+#site_holder {
+	padding-top: 40px;
+	width: 100%;
+	height: 100%;
+}
+#site_content {
+	margin: 0px auto;
+	width: @video_width; /*calc*/
+	height: @video_height; /*calc*/
+	padding: 0px;
+}
+#gif_title {
+	font-size: 30px;
+	color: #eae4c8;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #eae4c8;
+	margin: 0px auto 10px;
+}
+#steps {
+	width: 100%;
+	height: 100%;
+	margin: 0px auto 30px;
+}
+/* step_0 */
+#poster_holder {
+	background-position: 0% 0%;
+	background-repeat: no-repeat no-repeat;
+}
+/*step 1*/
+
+/*step 2*/
+#slider_holder {
+	background-color: #151515;
+	width: @video_width;
+	height: 100px;
+	margin: 0px auto 30px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat no-repeat;
+}
+#slider_instructions {	
+	color: #959595;
+	font-size: 12px;
+	text-align: center;
+	width: @video_width-100;
+	padding: 10px 0px;
+	margin: 0px auto;
+}
+#slider_instructions2 {
+	color: #959595;
+	font-size: 12px;
+	text-align: center;
+	width: @video_width - 100;
+	padding: 10px 0px 0px;
+	margin: 0px auto 5px;
+}
+.ui-slider-handle.ui-state-default.ui-corner-all {
+	height: 2.2em;
+}
+#step_2 .step_btn {
+	width: 290px;
+	margin: 0px;
+}
+/*step_3*/
+#step_3.step {
+	height: @video_height;
+} 
+#step_3 .content {
+	background: #000;
+	color: #fff;
+	font-size: 11px;
+	margin: 0px auto 30px auto;
+}
+#step_3 #loading_title {
+	font-size: 18px;
+	text-align: center;
+	width: @video_width;
+	height: @video_height - 100;
+	padding: 100px 0px 0px;
+}
+#step_3 .step_nav {
+	height: 50px;
+	margin: 0px auto 10px auto;
+}
+#step_3 .step_btn {
+	width: 186px;
+	font-size: 16px;
+	margin: 0px 10px 0px 0px;	
+}
+#step_3 #another_btn {
+	margin: 0px 0px 0px 0px;	
+}
+#step_3 #social_nav {
+	width: 195px;
+	height: 100px;
+	margin: 0px auto 30px;
+}
+#step_3 .social_btn {
+	float: left;
+	background-color: #5A5A5A;
+	text-align: center;
+	width: 35px;
+	height: 35px;
+	margin: 0px 17px 0px 0px;
+	cursor: pointer;
+	color: #FFF;
+	background-position: 50% 50%;
+	background-repeat: no-repeat no-repeat;
+}
+#step_3 #tumblr_btn.social_btn {
+	margin: 0px 0px 0px 0px;
+}
+#step_3 #user_gif {
+	margin-top: floor((@video_height - @output_video_height) / 2);
+	margin-bottom: floor((@video_height - @output_video_height) / 2);
+	margin-left: floor((@video_width - @output_video_width) / 2);
+	margin-right: floor((@video_width - @output_video_width) / 2);
+}
