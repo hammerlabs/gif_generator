@@ -3,8 +3,8 @@
 
 <html lang="en">
 <head>
-	<?php        
-	require_once 'settings.php';   
+	<?php
+	require_once 'includes/settings.php';   
 	require_once 'includes/browser_helper.php';   
 	$config = array(
 		"user_browser" => $user_browser,
@@ -32,6 +32,7 @@
 		"font2" => $font2,
 		"debugging" => $debugging,
 		"tracking" => $tracking,
+		"theme" => $theme,
 		"environment" => ENVIRONMENT 
 	);
 	?>  
@@ -48,10 +49,8 @@
     <meta property="og:type" content="movie" />
     <meta property="og:site_name" content="<?php echo $title; ?>" />  
 
-	<link href="//fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
-	<link href="css/goudy_trajan/stylesheet.css" rel="stylesheet" type="text/css">
 	<link href="js/libraries/video-js/video-js.css" rel="stylesheet" type="text/css">  
-	<link rel="stylesheet" href="css/theme_style.php" />  
+	<link rel="stylesheet" href="theme_style.php?theme=<?php echo $theme;?>" />  
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />  
 	
 	<script type="text/javascript">
@@ -65,6 +64,6 @@
 	<script src="js/libraries/TweenMax.min.js" type="text/javascript"></script> 
 	<script src="js/libraries/modernizr.js" type="text/javascript"></script>
 	<script src="js/site/site.js" type="text/javascript"></script>     
-	<script src="js/site/lang.js" type="text/javascript"></script>     
+	<script src="themes/<?php echo $theme;?>/lang-<?php echo $theme;?>-<?php echo $lang;?>.js" type="text/javascript"></script>     
 </body>
 </html>

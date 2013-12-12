@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    RewriteRule ^([^.]*\.less)$ includes/lessc.php?file=$1 [R,QSA,L]
-</ifModule>

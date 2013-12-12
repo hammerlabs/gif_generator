@@ -9,7 +9,6 @@ var SITE = new Site();
 function Site() { 
 	this.d = new Date();
 	this.n = this.d.getTime(); 
-	this.src = "vid/video";
 	this.id = "gif_creator_"+this.n; 
 	this.step = -1;   
 	this.start = 0;
@@ -22,7 +21,7 @@ function Site() {
 	this.view_video; 
 	this.edit_video;  
 	this.frame_rate = 24;
-};    
+};
 Site.prototype.trace = function (val) {    	
 	//if(this.debugging) alert(val); 
 	if(this.debugging) console.log("trace", val); 
@@ -35,11 +34,9 @@ Site.prototype.build = function () {
 	this.height = this.config.video_height+200;  
 	this.debugging = this.config.debugging;
 	this.tracking = this.config.tracking;
+	this.src = "themes/"+this.config.theme+"/video/video";
 	
 	$("#gif_frame").css({"border":"0"});  
-	$("body").css({  
-		"background-image":"url("+SITE.config["cdn"]+"images/bg.jpg)"
-		});  
 	$("body").append('<div id="site_holder"></div>');    
 	$("#site_holder").append('<div id="site_content"></div>');    
 	$("#site_content").append('<div id="gif_title">' + this.lang['gif_title'] + '</div>');  
@@ -58,9 +55,6 @@ Site.prototype.step_0 = function () {
 	$("#steps").append('<div id="step_0" class="step"></div>');  
 	$("#step_0").append('<div id="step_0_desc" class="step_desc content_font">' + this.lang['step_0_desc'] + '</div>');  
     $("#step_0").append('<div id="poster_holder" class="step_content"></div>');  
-	$("#poster_holder").css({  
-		"background-image":"url("+SITE.config["cdn"]+"images/step_0_img.jpg)"
-		});  
 	$("#step_0").append('<div id="step_0_nav" class="step_nav"></div>');  
 	$("#step_0_nav").append('<div id="begin_btn" class="step_btn">' + this.lang['step_0_begin_btn'] + '</div>');  
 	$("#begin_btn").click(function(event){    
@@ -123,8 +117,8 @@ Site.prototype.step_1 = function () {
 }; 
 
 Site.prototype.step_2 = function () {   
-	this.end 		= this.start + 3;                 
-	this.min_start  = this.start -1;
+	this.end = this.start + 3;                 
+	this.min_start = this.start -1;
 	if(this.min_start < 0) {
 		this.min_start = 0;
 	}
@@ -246,8 +240,7 @@ Site.prototype.step_3 = function () {
 
 	SITE.trace("SITE.start = "+this.start+" this.end = "+this.end); 
 	SITE.trace("SITE.start_frame = "+this.start_frame+" this.end_frame = "+this.end_frame);                                          	
-	//$("#new_gif").load(SITE.config['site_url']+'gif_generator.php?s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
-	$("#new_gif").load(SITE.config['webroot']+'gif_generator.php?s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
+	$("#new_gif").load(SITE.config['webroot']+'gif_generator.php?theme='+SITE.config['theme']+'&s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
 
 	$("#step_3").append('<div id="step_3_nav" class="step_nav"></div>');  		
 	$("#step_3_nav").append('<div id="download_btn" class="step_btn float_left">' + this.lang.step_3_download_btn + '</div>');  
@@ -286,7 +279,6 @@ Site.prototype.step_3 = function () {
 };   
 Site.prototype.build_social_btn = function(id) {
 	$("#social_nav").append('<div id="'+id+'" class="social_btn"></div>');  
-	$("#"+id).css({"background-image":"url("+SITE.config['cdn']+"images/"+id+".png)"}); 
 	this.btn_hover_setup( $("#"+id) );
 	return $("#"+id);
 };

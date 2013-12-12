@@ -1,6 +1,5 @@
 <?php
-require_once('settings.php');    
-require_once('includes/im_helper.php');    
+require_once 'includes/settings.php';   
 require_once('includes/tumblr_helper.php');    
 
 $oauth_response = authorizeToken();
@@ -46,7 +45,7 @@ function buildGif() {
 	$new_gif = new Imagick();
 	
 	for($i=$start;$i<$end;$i=$i+$gif_frame_rate) {
-		$image_id = "frames/frames_" . $i . ".jpg"; 
+		$image_id = "themes/".$GLOBALS['theme']."/frames/frames_" . $i . ".jpg"; 
 	    $frame = new Imagick();
 	    $frame->readImage($image_id);
 		//$frame->resizeImage($width,$height,Imagick::FILTER_LANCZOS,1);    
