@@ -1,1 +1,1 @@
-<p style="width: 100%;"><iframe frameborder="0" height="620" id="gifgenerator_frame" scrolling="no" src="http://demo.hammerlabs.com/pompeii/gif_generator/site/?theme=pompeii" width="760" style="margin: auto; display: block;"></iframe></p>
+<p style="width: 100%;"><iframe frameborder="0" height="620" id="gifgenerator_frame" scrolling="no" src="http://demo.hammerlabs.com/pompeii/gif_generator/site/?theme=pompeii&lang=en" width="760" style="margin: auto; display: block;"></iframe></p>
