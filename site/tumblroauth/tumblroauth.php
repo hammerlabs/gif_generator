@@ -1,9 +1,9 @@
 <?php
 
 /*
- * Abraham Williams (abraham@abrah.am) http://abrah.am
+ * Jacob Budin (me@jbud.in) http://jbud.in
  *
- * The first PHP Library to support OAuth for Tumblr's REST API.  (Originally for Twitter, modified for Tumblr by Lucas)
+ * A PHP Library to support OAuth for Tumblr's REST API, forked from Arbraham William's Twitter OAuth class.
  */
 
 /* Load OAuth lib. You can find it at http://oauth.net */
@@ -18,7 +18,9 @@ class TumblrOAuth {
   /* Contains the last API call. */
   public $url;
   /* Set up the API root URL. */
-  public $host = "http://api.tumblr.com/v2/";
+  public $host = "http://www.tumblr.com/api/";
+  /* Set up the API root URL for reading (%USER equals username). */
+  public $host_read = "http://%USER.tumblr.com/api/";
   /* Set timeout default. */
   public $timeout = 30;
   /* Set connect timeout. */
@@ -26,7 +28,7 @@ class TumblrOAuth {
   /* Verify SSL Cert. */
   public $ssl_verifypeer = FALSE;
   /* Respons format. */
-  public $format = 'json';
+  public $format = 'xml';
   /* Decode returned json data. */
   public $decode_json = TRUE;
   /* Contains the last HTTP headers returned. */
@@ -45,7 +47,7 @@ class TumblrOAuth {
   function accessTokenURL()  { return 'http://www.tumblr.com/oauth/access_token'; }
   function authenticateURL() { return 'http://www.tumblr.com/oauth/authorize'; }
   function authorizeURL()    { return 'http://www.tumblr.com/oauth/authorize'; }
-  function requestTokenURL() { return 'http://www.tumblr.com/oauth/request_token'; }
+  function requestTokenURL() { return 'http://www.tumblr.com/oauth/request_token'; } 
 
   /**
    * Debug helpers
@@ -173,11 +175,55 @@ class TumblrOAuth {
   }
 
   /**
+   * AUTHENTICATE wrapper for POST.
+   */
+	function authenticate(){
+		return $this->post('authenticate');
+	}
+	
+	/**
+   * READ wrapper for POST.
+   */
+	function read($user, $params){
+		$host = $this->host;
+		$this->host = str_replace('%USER', $user, $this->host_read);
+		$return = $this->post('read', $params);
+		$this->host = $host;
+		return $return;
+	}
+	
+	/**
+   * DASHBOARD wrapper for POST.
+   */
+	function dashboard($params){
+		return $this->post('dashboard', $params);
+	}
+	
+	/**
+   * PAGES wrapper for POST.
+   */
+	function pages($params){
+		return $this->post('pages', $params);
+	}
+	
+	/**
+   * WRITE wrapper for POST.
+   */
+	function write($params){
+		return $this->post('write', $params);
+	}
+
+  /**
    * Format and sign an OAuth / API request
    */
   function oAuthRequest($url, $method, $parameters) {
     if (strrpos($url, 'https://') !== 0 && strrpos($url, 'http://') !== 0) {
-      $url = "{$this->host}{$url}";
+		if($this->format == 'xml'){
+	      $url = "{$this->host}{$url}";
+		}
+		else{
+			$url = "{$this->host}{$url}/{$this->format}";
+		}
     }
     $request = OAuthRequest::from_consumer_and_token($this->consumer, $this->token, $method, $url, $parameters);
     $request->sign_request($this->sha1_method, $this->consumer, $this->token);
@@ -197,6 +243,17 @@ class TumblrOAuth {
   function http($url, $method, $postfields = NULL) {
     $this->http_info = array();
     $ci = curl_init();
+    if (ENVIRONMENT != "development") {
+      if(isset($_SERVER['HTTP_FRONT_END_HTTPS'])  && (strcasecmp($_SERVER['HTTP_FRONT_END_HTTPS'],"ON")==0)) {
+        $proxyport=$_SERVER['HTTPS_PROXY'];
+      } else {
+        $proxyport=$_SERVER['HTTP_PROXY'];
+      }
+      $parseArray=parse_url($proxyport);
+      $port=$parseArray['port'];
+      $proxy=$parseArray['host'];
+      curl_setopt($ci, CURLOPT_PROXY, $proxy.':'.$port);
+    }
     /* Curl settings */
     curl_setopt($ci, CURLOPT_USERAGENT, $this->useragent);
     curl_setopt($ci, CURLOPT_CONNECTTIMEOUT, $this->connecttimeout);

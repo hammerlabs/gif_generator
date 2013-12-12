@@ -3,8 +3,10 @@
 
 /* Generic exception class
  */
-class OAuthException extends Exception {
-  // pass
+if (!class_exists('OAuthException')) {
+  class OAuthException extends Exception {
+    // pass
+  }
 }
 
 class OAuthConsumer {
@@ -137,6 +139,7 @@ class OAuthSignatureMethod_PLAINTEXT extends OAuthSignatureMethod {
    * OAuthRequest handles this!
    */
   public function build_signature($request, $consumer, $token) {
+
     $key_parts = array(
       $consumer->secret,
       ($token) ? $token->secret : ""
@@ -660,6 +663,7 @@ class OAuthServer {
     // verify that timestamp is recentish
     $now = time();
     if (abs($now - $timestamp) > $this->timestamp_threshold) {
+
       throw new OAuthException(
         "Expired timestamp, yours $timestamp, ours $now"
       );

@@ -1,41 +1,17 @@
 var SITE = new Site();   
-
 (function($) {   
 	$(document).ready(function(){  
 		SITE.config = config; 
 		delete config;
-		if($('html.video')){
-			SITE.build();  
-		}else{
-			///doesn't have html5 video so hide gif generator
-			$('body').append('<div id="site_holder">Please use a modern browser</div>');
-		}
+		if($('html.video'))SITE.build();  
 	});      
 })(jQuery); 
-
 function Site() { 
-	this.built = false;   
-	this.debugging = true;
-	this.tracking = true;
-    this.vidW = 640;    
-	this.vidH = 300;    
-	this.blog_name = "http://www.ahdev.tumblr.com";     
-	//this.blog_name = "http://www.americanhustlemoviedev.tumblr.com";      
-	                                                                          
-	this.site_url = "http://cdn-dev.triggerglobal.com/sony/americanhustle/gif_generator/site/";
-	//this.site_url = "http://www.americanhustle-movie.com/tumblr/gifgenerator/";
-	
 	this.d = new Date();
 	this.n = this.d.getTime(); 
-	
 	this.src = "vid/video";
 	this.id = "gif_creator_"+this.n; 
-
-    this.width = 640;
-	this.height = 500;  
-	
 	this.step = -1;   
-	
 	this.start = 0;
 	this.end = 300;    
 	this.max = 3;
@@ -46,36 +22,39 @@ function Site() {
 	this.view_video; 
 	this.edit_video;  
 	this.frame_rate = 24;
-	
-	this.fontFamily = "Baumans";
 };    
-
 Site.prototype.trace = function (val) {    	
 	//if(this.debugging) alert(val); 
 	if(this.debugging) console.log("trace", val); 
 };  
-
 Site.prototype.build = function () {   
 	this.build_lang();
+    this.vidW = this.config.video_width;    
+	this.vidH = this.config.video_height;    
+    this.width = this.config.video_width;
+	this.height = this.config.video_height+200;  
+	this.debugging = this.config.debugging;
+	this.tracking = this.config.tracking;
+	
 	$("#gif_frame").css({"border":"0"});  
+	$("body").css({  
+		"background-image":"url("+SITE.config["cdn"]+"images/bg.jpg)"
+		});  
 	$("body").append('<div id="site_holder"></div>');    
 	$("#site_holder").append('<div id="site_content"></div>');    
 	$("#site_content").append('<div id="gif_title">' + this.lang['gif_title'] + '</div>');  
     $("#site_content").append('<div id="steps"></div>');  
 	this.action(0)
 };    
-
 Site.prototype.btn_hover_setup = function (btn) {
-	btn.mouseenter(function (event){  
+	/*btn.mouseenter(function (event){  
 		TweenMax.to(this, .2, {backgroundColor:"#ffc500", color:"#000", overwrite:2});   
 	}); 
 	btn.mouseleave(function (event){    
 		TweenMax.to(this, .2, {backgroundColor:"#5a5a5a", color:"#FFF", overwrite:2});     
-	}); 
+	});*/
 }
-
 Site.prototype.step_0 = function () {   
-	SITE.trace("step 0")
 	$("#steps").append('<div id="step_0" class="step"></div>');  
 	$("#step_0").append('<div id="step_0_desc" class="step_desc content_font">' + this.lang['step_0_desc'] + '</div>');  
     $("#step_0").append('<div id="poster_holder" class="step_content"></div>');  
@@ -90,7 +69,6 @@ Site.prototype.step_0 = function () {
 	this.btn_hover_setup( $("#begin_btn") );
     SITE.trace("step 0")   
 };  
-
 Site.prototype.step_1 = function () {   
 	$("#steps").append('<div id="step_1" class="step"></div>');  
 	$("#step_1").append('<div id="step_1_desc" class="step_desc content_font">' + this.lang['step_1_desc'] + '</div>');  
@@ -100,24 +78,18 @@ Site.prototype.step_1 = function () {
 	SITE.trace("user_browser = "+SITE.config["user_browser"]);    
 	if(SITE.config["user_browser"] == "Firefox") this.vid_type = "webm";
 
-	//this.vid_player = document.createElement('video');  
-	//this.vid_player.setAttribute('class',"video-js vjs-default-skin"); 
-	//this.vid_player.setAttribute('width',this.vidW);   
-	//this.vid_player.setAttribute('height',this.vidH); 
-	//this.vid_player.setAttribute('data-setup',"{}");
-	
-	var src		 	= SITE.config['cdn']+this.src+"."+this.vid_type; 
-	var vidType 	= this.vid_type;
-	var videoEl =   '<video id="myVideo" class="video-js vjs-default-skin" controls preload="auto" width="'+this.vidW+'" height="'+this.vidH+'" data-setup="{}"><source src="'+src+'" type="video/'+vidType+'" /></video>';
-	
-	videojs.options.techOrder 		 = [  'html5','flash', 'other supported tech'];
+	var src = SITE.config['cdn']+this.src+"."+this.vid_type; 
+	var vidType = this.vid_type;
+	var videoEl = '<video id="myVideo" class="video-js vjs-default-skin" controls preload="auto" width="'+this.vidW+'" height="'+this.vidH+'" data-setup="{}"><source src="'+src+'" type="video/'+vidType+'" /></video>';
+	videojs.options.techOrder = [  'html5','flash', 'other supported tech'];
 	$("#video_player").append(videoEl); 
 	SITE.myPlayer = videojs("myVideo");
     SITE.myPlayer.ready(function(){
-	    SITE.view_video = this;    
-		 this.on("play", function(){
-			 SITE.duration = Math.round(SITE.view_video.duration());   
-		 });
+	    SITE.view_video = this; 
+		SITE.view_video.play();
+		this.on("play", function(){
+			SITE.duration = Math.round(SITE.view_video.duration());   
+		});
 		this.on("error",function(event){
 		});
 		this.on("ended", function(){
@@ -137,36 +109,10 @@ Site.prototype.step_1 = function () {
 			SITE.start = Math.round(this.currentTime()*10)/10;
 			//console.log(SITE.start); 
 			SITE.duration = Math.round(this.duration());   
-		    SITE.trace("this.duration() = "+this.duration());
+		    //SITE.trace("this.duration() = "+this.duration());
 		}); 
     });
-/*
-	videojs.options.flash.swf		 = "http://cdn-dev.triggerglobal.com/sony/americanhustle/gif_generator/site/js/libraries/video-js/video-js.swf"; 
-	$("#video_player").append(videoEl); 	  
-	
-	videojs(this.id, "", function(){
-		
-	
-  		// Player (this) is initialized and ready.   
-		SITE.view_video = this;    
-		
-		this.on("ended", function(){
-			
-		}); 
-		
-		this.on("loadedmetadata", function(){     
-			SITE.trace("loaded ")
-			this.currentTime(SITE.start);
-		});
-		  
-		this.on("timeupdate", function(){
-			SITE.start = Math.round(this.currentTime()*10)/10; 
-			SITE.duration = Math.round(this.duration());   
-		    SITE.trace("this.duration() = "+this.duration());
-		}); 
-		
-	});    
-*/
+
 	$("#step_1").append('<div id="step_1_nav" class="step_nav"></div>');  
 	$("#step_1_nav").append('<div id="generate_gif_btn" class="step_btn">' + this.lang.step_1_generate_gif_btn + '</div>');  
 	//TweenMax.to($("#generate_gif_btn"), 0, {borderRadius:"2px"});   
@@ -189,14 +135,7 @@ Site.prototype.step_2 = function () {
     SITE.trace("SITE.start = "+this.start+" this.end = "+this.end); 
 	$("#steps").append('<div id="step_2" class="step"></div>');  		
 	$("#step_2").append('<div id="edit_video" class="step_content"></div>');  
-	
-/*
-	this.edit_vid_player.setAttribute('id',this.id+"_edit"); 
-	this.edit_vid_player.setAttribute('class',"video-js vjs-default-skin"); 
-	this.edit_vid_player.setAttribute('width',this.vidW);   
-	this.edit_vid_player.setAttribute('height',this.vidH); 
-*/ 
-	
+
 	var autoPlay = true;
 	if(SITE.config["device_type"] != "desktop") {
 		autoPlay = false;
@@ -205,10 +144,10 @@ Site.prototype.step_2 = function () {
 	var vidType = "mp4";     
 	SITE.trace("user_browser = "+SITE.config["user_browser"]);    
 	if(SITE.config["user_browser"] == "Firefox") vidType = "webm";
-	var src		 					=  SITE.config['cdn']+this.src+"."+this.vid_type; 
-	videojs.options.techOrder 		 = [ 'html5','flash','other supported tech'];
+	var src = SITE.config['cdn']+this.src+"."+this.vid_type; 
+	videojs.options.techOrder = [ 'html5','flash','other supported tech'];
 	
-	var videoEl =   '<video id="myVideo_edit" "autoplay"="'+autoPlay+'" class="video-js vjs-default-skin" preload="auto" width="'+this.vidW+'" height="'+this.vidH+'" data-setup="{}"><source src="'+src+'" type="video/'+vidType+'" /></video>';
+	var videoEl = '<video id="myVideo_edit" "autoplay"="'+autoPlay+'" class="video-js vjs-default-skin" preload="auto" width="'+this.vidW+'" height="'+this.vidH+'" data-setup="{}"><source src="'+src+'" type="video/'+vidType+'" /></video>';
 	
 	$("#edit_video").append(videoEl); 
 	SITE.edit_video = videojs("myVideo_edit");
@@ -236,28 +175,7 @@ Site.prototype.step_2 = function () {
 		this.on("error",function(event){
 		});
 	});
-/*
-	$("#edit_video").append(this.edit_vid_player); 	  
-	
-	videojs(this.id+"_edit", { "controls": false, "autoplay": this.vid_auto, "preload": "auto", techOrder: ["html5", "flash", "other supported tech"] }, function(){
-  		// Player (this) is initialized and ready.     
-		this.volume(0);   
-		SITE.edit_video = this;  
-		this.on("ended", function(){
-			this.play(SITE.start);
-		});
-		
-		this.on("loadedmetadata", function(){     
-			SITE.trace("loaded ")
-			this.currentTime(SITE.start);
-		});
-		
-		this.on("timeupdate", function(){
-			if(this.currentTime() > SITE.end) this.currentTime(SITE.start);
-		});
-	}); 
-	
-*/
+
 	$("#step_2").append('<div id="slider_holder"></div>');  
 	$("#slider_holder").css({ 
 		"background-image":"url("+SITE.config["cdn"]+"images/slder_holder_background.png)",
@@ -315,7 +233,6 @@ Site.prototype.step_2 = function () {
 		SITE.action(3);
 	});
 	this.btn_hover_setup( $("#make_btn") );
-
 }; 
 
 Site.prototype.step_3 = function () {   
@@ -327,12 +244,11 @@ Site.prototype.step_3 = function () {
 	this.end_frame = Math.round(this.end * this.frame_rate);   
 	this.vid_duration = Math.round(this.duration * this.frame_rate);   
 
-	 SITE.trace("SITE.start = "+this.start+" this.end = "+this.end); 
-	 SITE.trace("SITE.start_frame = "+this.start_frame+" this.end_frame = "+this.end_frame);                                          	
-	$("#new_gif").load(SITE.config['site_url']+'gif_generator.php/?s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
-	
-	//this.check_gif();
-	
+	SITE.trace("SITE.start = "+this.start+" this.end = "+this.end); 
+	SITE.trace("SITE.start_frame = "+this.start_frame+" this.end_frame = "+this.end_frame);                                          	
+	//$("#new_gif").load(SITE.config['site_url']+'gif_generator.php?s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
+	$("#new_gif").load(SITE.config['webroot']+'gif_generator.php?s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
+
 	$("#step_3").append('<div id="step_3_nav" class="step_nav"></div>');  		
 	$("#step_3_nav").append('<div id="download_btn" class="step_btn float_left">' + this.lang.step_3_download_btn + '</div>');  
 	$("#download_btn").click(function(event){    
@@ -394,31 +310,30 @@ Site.prototype.action = function (val) {
 		 this.step_1();
 		 if(!alreadyLoadedTrackingScript){
 			 $.ajax({
-				url: 'http://www.sonypictures.com/global/scripts/s_code.js',
+				url: '//www.sonypictures.com/global/scripts/s_code.js',
 				dataType: "script",
 				success: function(){
-					  s.pageName='us:movies:americanhustle:tumblr:gifcreator:choosestartframe.html'
+					  s.pageName='us:movies:pompeii:tumblr:gifcreator:choosestartframe.html'
 					  s.channel=s.eVar3='us:movies'
-					  s.prop3=s.eVar23='us:movies:americanhustle:gifcreator'
-					  s.prop4=s.eVar4='us:americanhustle'
+					  s.prop3=s.eVar23='us:movies:pompeii:gifcreator'
+					  s.prop4=s.eVar4='us:pompeii'
 					  s.prop5=s.eVar5='us:movies:blog'
 					  s.prop11='us'     
 					  var s_code=s.t();if(s_code)document.write(s_code);
-					 // SITE.track("clicktobegin.html","pageview"); 	
 					  alreadyLoadedTrackingScript = true;
 				}
 			});
 		 }else{
-			 SITE.track("generateanother.html","pageview"); 
+			SITE.track("generateanother_button","outboundclick","generateanother.html"); 
 		 }
 	}
 	if(val == 2) {
 		this.step_2();
-		SITE.track("reviewgif.html","pageview"); 
+		SITE.track("adjustlength.html","pageview"); 
 	}
 	if(val == 3){
 		this.step_3();
-		SITE.track("confirmation.html","pageview"); 
+		SITE.track("gifconfirmation.html","pageview"); 
 	}       	       
 	if(this.step == 0) {  
 		$("#step_0").remove(); 
@@ -438,39 +353,27 @@ Site.prototype.vid_progress = function (time) {
 };
 Site.prototype.view_currenttime = function () {  
 }; 
-Site.prototype.check_gif = function () {   
-	return;
-	TweenMax.killAll(false, false, true)                   
-	var gif_url = $("#new_gif_img").attr( "gif_src" );  
-	 this.trace("check_gif gif_url = "+gif_url)     
-	if(gif_url == undefined) {
-		TweenMax.delayedCall(.4,this.check_gif,[],this);
-	} else {  
-		this.trace("check_gif gif_url = "+gif_url)   
-		$.ajax({ url: SITE.config["site_url"]+"post_gif.php?g="+gif_url });
-	}
-};   
 Site.prototype.gif_name = function () {  
 	//current_gif
-	var gif_name = $("#new_gif_img").attr( "gif_name" );   
+	var gif_name = $("#user_gif").attr( "gif_name" );   
 	this.trace("gif_name = "+gif_name) 
     return gif_name;
 }; 
 Site.prototype.gif_src = function () {  
 	//current_gif
-	var gif_url = $("#new_gif_img").attr( "src" );   
+	var gif_url = $("#user_gif").attr( "src" );   
 	this.trace("gif_url = "+gif_url) 
     return gif_url;
 }; 
 Site.prototype.post_id = function () {  
 	//current_gif
-	var post_id = $("#new_gif_img").attr( "post_id" );   
+	var post_id = $("#user_gif").attr( "post_id" );   
 	this.trace("post_id = "+post_id) 
     return post_id;
 };
 Site.prototype.share_facebook = function () {  
 	if(this.post_id() == undefined) return;   
-	var share_facebook = 'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(this.blog_name+"/post/"+this.post_id());
+	var share_facebook = 'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(this.config.shareblog_name+"/post/"+this.post_id());
 	this.trace("share_facebook = "+share_facebook)  
 	SITE.track("postfacebook_button","outboundclick","www.facebook.com"); 
 	window.open(
@@ -480,7 +383,7 @@ Site.prototype.share_facebook = function () {
 };
 Site.prototype.share_twitter = function () {  
 	if(this.post_id() == undefined) return;   
-	var tweet = "Check out #AmericanHustle on Tumblr to create your own animated gif! In theaters December 2013."+this.blog_name+"/post/"+this.post_id();
+	var tweet = this.config.share_content+this.config.shareblog_name+"/post/"+this.post_id();
 	this.trace("tweet = "+tweet)  
 	SITE.track("posttwitter_button","outboundclick","www.twitter.com");  
 	window.open(
@@ -490,28 +393,26 @@ Site.prototype.share_twitter = function () {
 };
 Site.prototype.share_pintrest = function () {  
 	if(this.post_id() == undefined) return;   
-	var pintrest_url = "Check out the Gif I made for American Hustle";
-	this.trace("pintrest_url = "+pintrest_url)  
+	this.trace("share_pintrest = "+this.config.shareblog_name+"/post/"+this.post_id())        
 	SITE.track("postpintrest_button","outboundclick","www.pintrest.com");  
-	window.open('http://pinterest.com/pin/create/link/?url='+this.blog_name+"/post/"+this.post_id());	
+	window.open('http://pinterest.com/pin/create/link/?url='+this.config.shareblog_name+"/post/"+this.post_id());	
 }; 
 Site.prototype.share_tumblr = function () {  
 	if(this.post_id() == undefined) return;   
-	var share_tumblr = this.blog_name+"/post/"+this.post_id();   
-	var share_tumblr_title = "Check out &#35;AmericanHustle on Tumblr to create your own animated gif!"
+	var share_tumblr = this.config.shareblog_name+"/post/"+this.post_id();   
+	var share_tumblr_title = this.config.share_content;
 	this.trace("share_tumblr = "+share_tumblr)        
 	SITE.track("posttumblr_button","outboundclick","www.tumblr.com"); 
 	window.open('http://www.tumblr.com/share?v=3&u='+encodeURIComponent(share_tumblr)+"&t="+encodeURIComponent(share_tumblr_title));	
 }; 
 Site.prototype.download_gif = function () {  
 	if(this.gif_name() == undefined) return; 
-	//var test_url = "ah_gif_1380855585.gif";
-	SITE.track("ah_gif_download","download");       
-	window.open(SITE.config['site_url']+'download.php/?f='+this.gif_name()) 
+	SITE.track("gif_download","download");       
+	window.open(SITE.config['webroot']+'download.php/?f='+this.gif_name()) 
 }; 
 Site.prototype.view_on_wall = function () {  
 	if(this.gif_src() == undefined) return;   
-	window.top.location.href = this.blog_name+"/tagged/AmericanHustleTrailer";
+	window.top.location.href = this.config.shareblog_name+this.config.view_on_wall_link;
 }; 
 Site.prototype.track = function(id, type, url, name, position) {  
 	this.trace({id:id, type:type, url:url, name:name, position:position});

@@ -3,13 +3,9 @@
 
 <html lang="en">
 <head>
-	
-	
 	<?php        
-
-	include 'includes/get_url.php';   
-	include 'includes/get_browser.php';   
-	
+	require_once 'settings.php';   
+	require_once 'includes/browser_helper.php';   
 	$config = array(
 		"user_browser" => $user_browser,
 		"device_type" => $device_type,
@@ -19,32 +15,48 @@
 		"modern_browser" => $modern,
 		"view_port" => $view_port,
 		"site_url" => $url,
-		"cdn" => $cdn,
-		"debugging" => $debugging   
-		 );
-	
+		"cdn" => CDN,
+		"share_blogname" => $share_blogname,
+		"share_tags" => $share_tags,
+		"share_title" => $share_title,
+		"share_content" => $share_content,
+		"share_content_tumblr" => $share_content_tumblr,
+		"share_url" => $share_url,
+		"share_image" => $share_image,
+		"webroot" => $webroot,
+		"user_images_folder" => $user_images_folder,
+		"view_on_wall_link" => $view_on_wall_link,
+		"video_width" => $video_width,
+		"video_height" => $video_height,
+		"font1" => $font1,
+		"font2" => $font2,
+		"debugging" => $debugging,
+		"tracking" => $tracking,
+		"environment" => ENVIRONMENT 
+	);
 	?>  
-	
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Pompeii Gif Creator</title> 
-    <meta name="viewport" content="<?php echo $view_port; ?>">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title><?php echo $title; ?></title>      
+    <meta name="description" content="<?php echo $desc; ?>">
+    <meta name="keywords" content="<?php echo $keywords; ?>">              
+    <meta name="viewport" content="<?php echo $view_port; ?>">  
+        
+    <meta property="og:title" content="<?php echo $og_title; ?>" />  
+    <meta property="og:description" content="<?php echo $desc; ?>" />
+    <meta property="og:url" content="<?php echo $url; ?>" />
+    <meta property="og:image" name="thumb" content="<?php echo $image; ?>" />  
+    <meta property="og:type" content="movie" />
+    <meta property="og:site_name" content="<?php echo $title; ?>" />  
 
-	<link href='http://fonts.googleapis.com/css?family=Baumans|Raleway' rel='stylesheet' type='text/css'>  
+	<link href="//fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" type="text/css">
+	<link href="css/goudy_trajan/stylesheet.css" rel="stylesheet" type="text/css">
 	<link href="js/libraries/video-js/video-js.css" rel="stylesheet" type="text/css">  
-	<link rel="stylesheet" href="css/theme.css" />  
+	<link rel="stylesheet" href="css/theme_style.php" />  
 	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />  
 	
-  	<script type="text/javascript">
-		     
-	   
-		<?php
-			$js_array = json_encode($config);
-			echo "var config = ". $js_array . ";\n";
-		?>  
-		  
-        //alert("device_type = "+config["device_type"]+" browser_type = "+config["browser_type"])
-	</script>      
-
+	<script type="text/javascript">
+        <?php echo "var config = ". json_encode($config) . ";";?>  
+    </script>  
 </head>
 <body>  
 	<script src="js/libraries/video-js/video.js" type="text/javascript"></script>   
@@ -54,24 +66,5 @@
 	<script src="js/libraries/modernizr.js" type="text/javascript"></script>
 	<script src="js/site/site.js" type="text/javascript"></script>     
 	<script src="js/site/lang.js" type="text/javascript"></script>     
-	
-	<?
-	//phpinfo()
-	?> 
-<!--
-	<div id="omniturecode">
-		<script type="text/javascript" src="http://www.sonypictures.com/global/scripts/s_code.js"></script>
-		<script type="text/javascript">                                                                                 
-		  s.pageName='us:movies:americanhustle:tumblr:gifcreator:index.html'
-		  s.channel=s.eVar3='us:movies'
-		  s.prop3=s.eVar23='us:movies:americanhustle:gifcreator'
-		  s.prop4=s.eVar4='us:americanhustle'
-		  s.prop5=s.eVar5='us:movies:blog'
-		  s.prop11='us'     
-		  var s_code=s.t();if(s_code)document.write(s_code) 
-		</script>   
-	</div> 
--->
-   
 </body>
 </html>
