@@ -13,8 +13,9 @@ Site.prototype.build_lang = function() {
 	this.lang.step_2_resume_btn = "RESUME VIDEO";
 	this.lang.step_2_make_btn = "GENERATE THIS GIF";
 	/*step 3*/
+	this.lang.step_3_desc = "Here's your gif! Share it now and check back soon to see if it's chosen for the gallery.";
 	this.lang.step_3_generating_gif = "GENERATING GIF";
 	this.lang.step_3_download_btn = "DOWNLOAD";
-	this.lang.step_3_view_btn = "VIEW IN GALLERY";
-	this.lang.step_3_another_btn = "GENERATE ANOTHER";
+	this.lang.step_3_view_btn = "VIEW GALLERY";
+	this.lang.step_3_another_btn = "CREATE ANOTHER";
 };

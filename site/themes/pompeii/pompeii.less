@@ -80,10 +80,8 @@ body {
 #gif_title {
 	font-size: 30px;
 	color: #eae4c8;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: #eae4c8;
 	margin: 0px auto 10px;
+	text-align: center;
 }
 #steps {
 	width: 100%;
@@ -134,8 +132,16 @@ body {
 #step_3.step {
 	height: @video_height;
 } 
+#step_3 .vjs-loading-spinner {
+	top: 70px;
+	display: block;
+	position: relative;
+} 
+#step_3 .step_desc {
+	font-size: 20px;
+} 
 #step_3 .content {
-	background: #000;
+	background: rgba(0, 0, 0, 0.4);
 	color: #fff;
 	font-size: 11px;
 	margin: 0px auto 30px auto;

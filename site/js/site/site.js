@@ -231,8 +231,9 @@ Site.prototype.step_2 = function () {
 
 Site.prototype.step_3 = function () {   
 	$("#steps").append('<div id="step_3" class="step"></div>');  
+	$("#step_3").append('<div id="step_3_desc" class="step_desc content_font">' + this.lang['step_3_desc'] + '</div>');  
 	$("#step_3").append('<div id="new_gif" class="content"></div>');  
-	$("#new_gif").append('<div id="loading_title">' + this.lang.step_3_generating_gif + '<div class="vjs-default-skin"><div style="top:68%;display:block" class="vjs-loading-spinner"></div></div></div>');  
+	$("#new_gif").append('<div id="loading_title">' + this.lang.step_3_generating_gif + '<div class="vjs-default-skin"><div class="vjs-loading-spinner"></div></div></div>');  
 		      
 	this.start_frame = Math.round(this.start * this.frame_rate); 
 	this.end_frame = Math.round(this.end * this.frame_rate);   
