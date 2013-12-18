@@ -33,6 +33,7 @@
 		"debugging" => $debugging,
 		"tracking" => $tracking,
 		"theme" => $theme,
+		"btn_rollovers" => $btn_rollovers,
 		"environment" => ENVIRONMENT 
 	);
 	?>  

@@ -25,6 +25,20 @@ $gif_frame_rate = 4;
 $frame_delay = 15;
 $watermark_src = "themes/".$theme."/watermark.png"; 
 $user_images_folder = "gifs";
+$btn_rollovers = 
+'{"mouseenter":{
+    "overwrite": 2,
+	"backgroundColor": "rgba(110, 107, 91, 1)",
+    "color": "#FFFFFF",
+    "borderColor": "rgba(160, 155, 131, 1)"
+},
+"mouseleave": {
+    "overwrite": 2,
+    "backgroundColor": "rgba(24, 29, 30, .5)",
+    "color": "#FFFFFF",
+    "borderColor": "rgba(255, 255, 255, .4)"
+}}';
+
 
 $_environments_list = array(
 	'testing' => array(

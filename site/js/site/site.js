@@ -35,6 +35,7 @@ Site.prototype.build = function () {
 	this.debugging = this.config.debugging;
 	this.tracking = this.config.tracking;
 	this.src = "themes/"+this.config.theme+"/video/video";
+	this.btn_rollovers = $.parseJSON(this.config.btn_rollovers);
 	
 	$("#gif_frame").css({"border":"0"});  
 	$("body").append('<div id="site_holder"></div>');    
@@ -44,12 +45,13 @@ Site.prototype.build = function () {
 	this.action(0)
 };    
 Site.prototype.btn_hover_setup = function (btn) {
-	/*btn.mouseenter(function (event){  
-		TweenMax.to(this, .2, {backgroundColor:"#ffc500", color:"#000", overwrite:2});   
+	if (this.btn_rollovers == false) return;
+	btn.mouseenter(function (event){  
+		TweenMax.to(this, .2, SITE.btn_rollovers.mouseenter);   
 	}); 
 	btn.mouseleave(function (event){    
-		TweenMax.to(this, .2, {backgroundColor:"#5a5a5a", color:"#FFF", overwrite:2});     
-	});*/
+		TweenMax.to(this, .2, SITE.btn_rollovers.mouseleave);     
+	});
 }
 Site.prototype.step_0 = function () {   
 	$("#steps").append('<div id="step_0" class="step"></div>');  
