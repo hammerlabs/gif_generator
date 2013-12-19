@@ -20,7 +20,6 @@
 		"share_tags" => $share_tags,
 		"share_title" => $share_title,
 		"share_content" => $share_content,
-		"share_content_tumblr" => $share_content_tumblr,
 		"share_url" => $share_url,
 		"share_image" => $share_image,
 		"webroot" => $webroot,
@@ -62,8 +61,10 @@
 	<script src="js/libraries/video-js/video.js" type="text/javascript"></script>   
 	<script src="js/libraries/jquery-1.9.1.js" type="text/javascript"></script>  
 	<script src="js/libraries/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>  
+	<script src="js/libraries/jquery.ui.touch-punch.min.js" type="text/javascript"></script> 
 	<script src="js/libraries/TweenMax.min.js" type="text/javascript"></script> 
 	<script src="js/libraries/modernizr.js" type="text/javascript"></script>
+	<!--script src="js/site/share.js" type="text/javascript"></script-->     
 	<script src="js/site/site.js" type="text/javascript"></script>     
 	<script src="themes/<?php echo $theme;?>/lang-<?php echo $theme;?>-<?php echo $lang;?>.js" type="text/javascript"></script>     
 </body>
