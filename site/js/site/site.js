@@ -1,3 +1,8 @@
+// make console safe to use
+if (typeof console === "undefined"){
+	console={};
+	console.log = function(){return;}
+}
 var SITE = new Site();   
 (function($) {   
 	$(document).ready(function(){  
@@ -273,8 +278,8 @@ Site.prototype.step_3 = function () {
 	this.build_social_btn("twitter_btn").click(function(event){    
 		SITE.share_twitter();
 	});
-	this.build_social_btn("pintrest_btn").click(function(event){    
-		SITE.share_pintrest();
+	this.build_social_btn("pinterest_btn").click(function(event){    
+		SITE.share_pinterest();
 	});
 	this.build_social_btn("tumblr_btn").click(function(event){    
 		SITE.share_tumblr();
@@ -282,7 +287,7 @@ Site.prototype.step_3 = function () {
 };   
 Site.prototype.build_social_btn = function(id) {
 	$("#social_nav").append('<div id="'+id+'" class="social_btn"></div>');  
-	this.btn_hover_setup( $("#"+id) );
+	//this.btn_hover_setup( $("#"+id) );
 	return $("#"+id);
 };
 var alreadyLoadedTrackingScript = false;    
