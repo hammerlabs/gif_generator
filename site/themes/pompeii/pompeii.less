@@ -85,13 +85,23 @@ body {
 	text-align: center;
 	border-bottom: 2px solid #504E45;
 }
+#myVideo {
+	display: none;	
+}
+.step_1 #myVideo,
+.step_2 #myVideo {
+	display: block;	
+}
+#user_gif {
+	display: none;	
+}
 #steps {
 	width: 100%;
 	height: 100%;
 	margin: 0px auto 30px;
 }
 /* step_0 */
-#poster_holder {
+.step_0 .step_content {
 	background-position: 0% 0%;
 	background-repeat: no-repeat no-repeat;
 	background-image: url(@{cdn}themes/@{theme}/images/step_0_img.jpg);
@@ -100,12 +110,22 @@ body {
 
 /*step 2*/
 #slider_holder {
+	display: none;
 	background-color: #151515;
 	width: @video_width;
 	height: 100px;
 	margin: 0px auto 30px;
 	background-position: 50% 50%;
 	background-repeat: no-repeat no-repeat;
+	background-image: url(@{cdn}images/slder_holder_background.png);
+}
+.step_2 #slider_holder {
+	display: block;
+}
+#slider_range {
+	width: @video_width - 200;
+	height: 30px;
+	margin: 0px auto;
 }
 #slider_instructions {	
 	color: #959595;
@@ -126,53 +146,53 @@ body {
 .ui-slider-handle.ui-state-default.ui-corner-all {
 	height: 2.2em;
 }
-#step_2 .step_btn {
+.step_2 .step_btn {
 	width: 290px;
 	margin: 0px;
 }
 /*step_3*/
-#step_3.step {
+.step_3.step {
 	height: @video_height;
 } 
-#step_3 .vjs-loading-spinner {
+.step_3 .vjs-loading-spinner {
 	top: 70px;
 	display: block;
 	position: relative;
 } 
-#step_3 .step_desc {
+.step_3 .step_desc {
 	font-size: 16px;
 } 
-#step_3 .content {
+.step_3 .step_content {
 	background: rgba(0, 0, 0, 0.4);
 	color: #fff;
 	font-size: 11px;
 	margin: 0px auto 30px auto;
 }
-#step_3 #loading_title {
+.step_3 #loading_title {
 	font-size: 18px;
 	text-align: center;
 	width: @video_width;
 	height: @video_height - 100;
 	padding: 100px 0px 0px;
 }
-#step_3 .step_nav {
+.step_3 .step_nav {
 	height: 50px;
 	margin: 0px auto 10px auto;
 }
-#step_3 .step_btn {
+.step_3 .step_btn {
 	width: 186px;
 	font-size: 16px;
 	margin: 0px 10px 0px 0px;	
 }
-#step_3 #another_btn {
+.step_3 #another_btn {
 	margin: 0px 0px 0px 0px;	
 }
-#step_3 #social_nav {
+.step_3 #social_nav {
 	width: 195px;
 	height: 100px;
 	margin: 0px auto 30px;
 }
-#step_3 .social_btn {
+.step_3 .social_btn {
 	float: left;
 	background-color: #5A5A5A;
 	text-align: center;
@@ -184,20 +204,21 @@ body {
 	background-position: 50% 50%;
 	background-repeat: no-repeat no-repeat;
 }
-#step_3 #facebook_btn.social_btn {
+.step_3 #facebook_btn.social_btn {
 	background-image: url(@{cdn}images/facebook_btn.png);
 }
-#step_3 #twitter_btn.social_btn {
+.step_3 #twitter_btn.social_btn {
 	background-image: url(@{cdn}images/twitter_btn.png);
 }
-#step_3 #pinterest_btn.social_btn {
+.step_3 #pinterest_btn.social_btn {
 	background-image: url(@{cdn}images/pinterest_btn.png);
 }
-#step_3 #tumblr_btn.social_btn {
+.step_3 #tumblr_btn.social_btn {
 	background-image: url(@{cdn}images/tumblr_btn.png);
 	margin: 0px 0px 0px 0px;
 }
-#step_3 #user_gif {
+.step_3 #user_gif {
+	display: inline;
 	margin-top: floor((@video_height - @output_video_height) / 2);
 	margin-bottom: floor((@video_height - @output_video_height) / 2);
 	margin-left: floor((@video_width - @output_video_width) / 2);
