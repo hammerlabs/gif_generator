@@ -16,6 +16,7 @@
 		"view_port" => $view_port,
 		"site_url" => $url,
 		"cdn" => CDN,
+		"share_fb_app_id" => $share_fb_app_id,
 		"share_blogname" => $share_blogname,
 		"share_tags" => $share_tags,
 		"share_title" => $share_title,
@@ -58,13 +59,15 @@
     </script>  
 </head>
 <body>  
+	<div id="fb-root"></div>
+    
 	<script src="js/libraries/video-js/video.js" type="text/javascript"></script>   
 	<script src="js/libraries/jquery-1.9.1.js" type="text/javascript"></script>  
 	<script src="js/libraries/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>  
 	<script src="js/libraries/jquery.ui.touch-punch.min.js" type="text/javascript"></script> 
 	<script src="js/libraries/TweenMax.min.js" type="text/javascript"></script> 
 	<script src="js/libraries/modernizr.js" type="text/javascript"></script>
-	<!--script src="js/site/share.js" type="text/javascript"></script-->     
+	<script src="js/site/share.js" type="text/javascript"></script>     
 	<script src="js/site/site.js" type="text/javascript"></script>     
 	<script src="themes/<?php echo $theme;?>/lang-<?php echo $theme;?>-<?php echo $lang;?>.js" type="text/javascript"></script>     
 </body>

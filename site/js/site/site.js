@@ -6,8 +6,16 @@ if (typeof console === "undefined"){
 var SITE = new Site();   
 (function($) {   
 	$(document).ready(function(){  
-		SITE.config = config; 
-		delete config;
+		$Share.init({
+			shareBlogname: config.share_blogname,
+			shareUrl: config.share_url,
+			shareImage: config.share_image,
+			title: config.share_title,
+			content: config.share_content,
+			tags: config.share_tags
+		});
+		SITE.config = config;
+		SITE.share = $Share; 
 		if($('html.video'))SITE.build();  
 	});      
 })(jQuery); 
@@ -68,7 +76,7 @@ Site.prototype.step_0 = function () {
 		SITE.action(1);
 	});
 	this.btn_hover_setup( $("#begin_btn") );
-    SITE.trace("step 0")   
+    SITE.trace("step 0");   
 };  
 Site.prototype.step_1 = function () {   
 	$("#steps").append('<div id="step_1" class="step"></div>');  
@@ -296,12 +304,12 @@ Site.prototype.action = function (val) {
 	if(this.step == 1) {
 		var vid_buffer = SITE.view_video.bufferedPercent(); 
 		this.trace("vid_buffer = "+vid_buffer);
-		if(vid_buffer < .2) return;
+		//if(vid_buffer < .2) return;
 	}  
 	if(this.step == 2) {
 		var vid_buffer = SITE.edit_video.bufferedPercent();   
 		this.trace("vid_buffer = "+vid_buffer)   
-		if(vid_buffer < .2) return;
+		//if(vid_buffer < .2) return;
 	}
 	if(val == 0) {
 		this.step_0();
@@ -371,39 +379,34 @@ Site.prototype.post_id = function () {
 	this.trace("post_id = "+post_id) 
     return post_id;
 };
+Site.prototype.post_url = function () {  
+    return "http://"+this.config.share_blogname+"/post/"+this.post_id();
+};
+Site.prototype.share_content = function (content) {  
+    return content.replace("{tumblr_post}", this.post_url());
+};
 Site.prototype.share_facebook = function () {  
-	if(this.post_id() == undefined) return;   
-	var share_facebook = 'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(this.config.shareblog_name+"/post/"+this.post_id());
-	this.trace("share_facebook = "+share_facebook)  
+	//if(this.post_id() == undefined) return;   
 	SITE.track("postfacebook_button","outboundclick","www.facebook.com"); 
-	window.open(
-	      share_facebook, 
-	      'facebook-share-dialog', 
-	      'width=626,height=436');	
+	SITE.share.facebookFeed({
+		"content":this.share_content(this.config.share_content),
+		"shareImage":location.href + SITE.gif_src()
+	});
 };
 Site.prototype.share_twitter = function () {  
 	if(this.post_id() == undefined) return;   
-	var tweet = this.config.share_content+this.config.shareblog_name+"/post/"+this.post_id();
-	this.trace("tweet = "+tweet)  
 	SITE.track("posttwitter_button","outboundclick","www.twitter.com");  
-	window.open(
-	      'http://twitter.com/intent/tweet?text='+encodeURIComponent(tweet), 
-	      'twitter-share-dialog', 
-	      'width=626,height=436');	
+	SITE.share.twitterMedia({"content":this.share_content(this.config.share_content)});
 };
-Site.prototype.share_pintrest = function () {  
+Site.prototype.share_pinterest = function () {  
 	if(this.post_id() == undefined) return;   
-	this.trace("share_pintrest = "+this.config.shareblog_name+"/post/"+this.post_id())        
 	SITE.track("postpintrest_button","outboundclick","www.pintrest.com");  
-	window.open('http://pinterest.com/pin/create/link/?url='+this.config.shareblog_name+"/post/"+this.post_id());	
+	SITE.share.pinterest({"content":this.share_content(this.config.share_content)});
 }; 
 Site.prototype.share_tumblr = function () {  
 	if(this.post_id() == undefined) return;   
-	var share_tumblr = this.config.shareblog_name+"/post/"+this.post_id();   
-	var share_tumblr_title = this.config.share_content;
-	this.trace("share_tumblr = "+share_tumblr)        
 	SITE.track("posttumblr_button","outboundclick","www.tumblr.com"); 
-	window.open('http://www.tumblr.com/share?v=3&u='+encodeURIComponent(share_tumblr)+"&t="+encodeURIComponent(share_tumblr_title));	
+	SITE.share.tumblr({"content":this.share_content(this.config.share_content)});
 }; 
 Site.prototype.download_gif = function () {  
 	if(this.gif_name() == undefined) return; 

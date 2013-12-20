@@ -2,6 +2,14 @@ var $Share = {
 	options: {},
 	init: function(obj) {
 		if (obj) this.options = obj;
+		$.ajaxSetup({ cache: true });
+		$.getScript('//connect.facebook.net/en_US/all.js', function(){
+			FB.init({
+				appId: SITE.config.share_fb_app_id,
+				status: false,
+				xfbml: false
+			});
+		});
 	},
 	google: function(obj) {
 		if (obj) $.extend(true, this.options, obj);
@@ -53,6 +61,29 @@ var $Share = {
 			encodeURIComponent( this.options.content ),
 			'share_twitter',
 			'toolbar=0,status=0,width=548,height=325'
+		);
+	},
+	facebookFeed: function(obj) {
+		if (obj) $.extend(true, this.options, obj);
+		if (FB == undefined) return;
+		// For parameters, see: https://developers.facebook.com/docs/reference/dialogs/feed/
+		FB.ui(
+			{
+				method: 'feed',
+				display: 'popup',
+				name: this.options.title,
+				caption: "Pompeii Caption",
+				description: this.options.content,
+				link: "demo.hammerlabs.com",
+				picture: this.options.shareImage
+			},
+			function(response) {
+				if (response && response.post_id) {
+					SITE.trace('FB Post was published.');
+				} else {
+					SITE.trace('FB Post was not published.');
+				}
+			}
 		);
 	},
 	facebook: function(obj) {
