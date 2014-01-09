@@ -1,5 +1,6 @@
 <?php
-require_once 'includes/settings.php';   
+
+require_once('includes/settings.php');
 require_once('includes/tumblr_helper.php');    
 
 $oauth_response = authorizeToken();
@@ -16,25 +17,38 @@ $usercontent["post_response"] = postPhoto($usercontent["url"], $share_tags);
 echo '<img id="user_gif" src="' . $usercontent["url"] . '" post_id="'.$usercontent["post_response"]->response->response->id.'" gif_name="' . $usercontent["name"] . '" />';  
 exit;
 
+function meminuse( $l ) {
+	$unit = array( 'b', 'kb', 'mb', 'gb', 'tb', 'pb' );
+	$size = memory_get_usage( true );
+	$meminuse = @round( $size / pow( 1024, ( $i = floor( log( $size, 1024 ) ) ) ), 2 ) . ' ' . $unit[ $i ];
+	error_log( "MEM LOG: {$l} / {$meminuse}" ); 
+}
+
 function getGifParam($name, $default, $min, $max) {
 	$value = $default;
 	if(!empty($_GET[$name])) $value = htmlspecialchars($_GET[$name]);   
-	if($value < $min){
-		$value = $min;
-	}else if($value > $max){
-		$value = $max;
-	}
+	if ( is_numeric( $value ) && $value > 0 ) {
+		if($value < $min){
+			$value = $min;
+		}else if($value > $max){
+			$value = $max;
+		}
+	} 
 	return $value;
 }
-function buildGif() {     
-	$duration = getGifParam("d", 3300, 0, 5000);
+function buildGif() {
+
+	//ini_set( 'memory_limit', '32M' );
+
+	$duration = $GLOBALS['duration'];
 	$start = getGifParam("s", 1745, 0, $duration);
 	$end = getGifParam("e", 1817, $start + 1, $start + 80);
 
-	$gif_name = "pompeii_gif_".date("U").".gif";     
+	$gif_name = $GLOBALS['theme']."_gif_".date("U").".gif";     
 	$width = $GLOBALS['output_video_width'];
 	$height = $GLOBALS['output_video_height'];
-	$gif_frame_rate = $GLOBALS['gif_frame_rate'];  
+	$gif_max_frames = $GLOBALS['gif_max_frames'];  
+	$gif_frame_rate = floor( ($end - $start) / $gif_max_frames );//$GLOBALS['gif_frame_rate'];  
 	$frame_delay = $GLOBALS['frame_delay'];
 
 	$watermark = new Imagick();
@@ -43,7 +57,9 @@ function buildGif() {
 	$watermark_y = $height - $watermark_height;
 
 	$new_gif = new Imagick();
-	
+	//meminuse( __LINE__ );
+	//error_log( "start: {$start} / end: {$end} / duration: {$duration} / gif_frame_rate: {$gif_frame_rate}" ); 
+
 	for($i=$start;$i<$end;$i=$i+$gif_frame_rate) {
 		$image_id = "themes/".$GLOBALS['theme']."/frames/frames_" . $i . ".jpg"; 
 	    $frame = new Imagick();
@@ -55,9 +71,11 @@ function buildGif() {
 		$frame->clear();                    
 	}
 
-	$gif_url = $GLOBALS['user_images_folder'].'/'.$gif_name;  
-	$new_gif->writeImages($gif_url, true); // combine all image into one single image   	
+	//meminuse( __LINE__ );
+	$gif_url = $GLOBALS['user_images_folder'].'/'.$gif_name;
+	$new_gif->writeImages($gif_url, true); // combine all image into one single image
 	$new_gif->clear();
+	//meminuse( __LINE__ );
 	return array('url'=>$gif_url,'name'=>$gif_name);
 }
 ?> 

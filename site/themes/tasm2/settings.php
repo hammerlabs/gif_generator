@@ -21,10 +21,12 @@ $video_width = 640;
 $video_height = 266;
 $output_video_width = 400;
 $output_video_height = 166;
-$gif_frame_rate = 4;  
-$frame_delay = 15;
+$gif_max_frames = 10;  
+$frame_delay = 15; // time between frames in the output animation, value is 100ths of a second
+$duration = 3611; // whats the number of files in the frames folder?
 $watermark_src = "themes/".$theme."/watermark.png"; 
 $user_images_folder = "gifs";
+$btn_rollovers = "";
 
 $_environments_list = array(
 	'testing' => array(

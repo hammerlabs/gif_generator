@@ -202,13 +202,14 @@ Site.prototype.step_3 = function () {
 	//$("#step_3").append('<div id="new_gif" class="content"></div>');  
 	$(".step_content").append('<div id="loading_title">' + this.lang.step_3_generating_gif + '<div class="vjs-default-skin"><div class="vjs-loading-spinner"></div></div></div>');  
 		      
+	SITE.myPlayer.pause();
 	this.start_frame = Math.round(this.start * this.frame_rate); 
 	this.end_frame = Math.round(this.end * this.frame_rate);   
 	this.vid_duration = Math.round(this.duration * this.frame_rate);   
 
 	SITE.trace("SITE.start = "+this.start+" this.end = "+this.end); 
 	SITE.trace("SITE.start_frame = "+this.start_frame+" this.end_frame = "+this.end_frame);                                          	
-	$(".step_content").load(SITE.config['webroot']+'gif_generator.php?theme='+SITE.config['theme']+'&s='+this.start_frame+'&e='+this.end_frame+'&d='+this.vid_duration);   
+	$(".step_content").load(SITE.config['webroot']+'gif_generator.php?theme='+SITE.config['theme']+'&s='+this.start_frame+'&e='+this.end_frame);   
 
 	//$("#step_3").append('<div id="step_3_nav" class="step_nav"></div>');  		
 	$(".step_nav").html('<div id="download_btn" class="step_btn float_left">' + this.lang.step_3_download_btn + '</div>');  
