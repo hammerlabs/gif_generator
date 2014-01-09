@@ -13,8 +13,8 @@ $usercontent = buildGif();
 $usercontent["oauth_response"] = $oauth_response;
 $usercontent["post_response"] = postPhoto($usercontent["url"], $share_tags);
 //header('Content-Type: application/json');
-//print( json_encode( $usercontent ) );
-echo '<img id="user_gif" src="' . $usercontent["url"] . '" post_id="'.$usercontent["post_response"]->response->response->id.'" gif_name="' . $usercontent["name"] . '" />';  
+//print( "<!--" . json_encode( $usercontent ) . "-->" );
+echo '<img id="user_gif" src="' . $usercontent["url"] . '" post_id="'.$usercontent["post_response"]["response"]->response->id.'" gif_name="' . $usercontent["name"] . '" />';  
 exit;
 
 function meminuse( $l ) {
