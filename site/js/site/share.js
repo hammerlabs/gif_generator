@@ -72,7 +72,7 @@ var $Share = {
 				method: 'feed',
 				display: 'popup',
 				name: this.options.title,
-				caption: "Pompeii Caption",
+				/*caption: "Pompeii Caption",*/
 				description: this.options.content,
 				link: "demo.hammerlabs.com",
 				picture: this.options.shareImage

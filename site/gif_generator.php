@@ -47,9 +47,10 @@ function buildGif() {
 	$gif_name = $GLOBALS['theme']."_gif_".date("U").".gif";     
 	$width = $GLOBALS['output_video_width'];
 	$height = $GLOBALS['output_video_height'];
-	$gif_max_frames = $GLOBALS['gif_max_frames'];  
-	$gif_frame_rate = floor( ($end - $start) / $gif_max_frames );//$GLOBALS['gif_frame_rate'];  
-	$frame_delay = $GLOBALS['frame_delay'];
+	$gif_frames = $GLOBALS['gif_frames'];  
+	$clip_duration = $end - $start;
+	$gif_frame_rate = floor( $clip_duration / $gif_frames );//$GLOBALS['gif_frame_rate'];  
+	$frame_delay = floor( (($clip_duration - $gif_frames) * 2.5) / $gif_frames );//$GLOBALS['frame_delay'];
 
 	$watermark = new Imagick();
 	$watermark->readImage($GLOBALS['watermark_src']);
@@ -58,7 +59,8 @@ function buildGif() {
 
 	$new_gif = new Imagick();
 	//meminuse( __LINE__ );
-	//error_log( "start: {$start} / end: {$end} / duration: {$duration} / gif_frame_rate: {$gif_frame_rate}" ); 
+	//error_log( "start: {$start} / end: {$end} / duration: {$duration} / gif_frame_rate: {$gif_frame_rate} / frame_delay: {$frame_delay}" ); 
+	//print( "<!--" . "start: {$start} / end: {$end} / duration: {$duration} / gif_frame_rate: {$gif_frame_rate} / gif_frames: {$gif_frames} / clip_duration: {$clip_duration} / frame_delay: {$frame_delay}" . "-->" );
 
 	for($i=$start;$i<$end;$i=$i+$gif_frame_rate) {
 		$image_id = "themes/".$GLOBALS['theme']."/frames/frames_" . $i . ".jpg"; 

@@ -58,8 +58,8 @@
     <body>
         <div id="fb-root"></div>
         
+        <script src="js/libraries/jquery-1.10.2.min.js" type="text/javascript"></script> 
         <script src="js/libraries/video-js/video.js" type="text/javascript"></script> 
-        <script src="js/libraries/jquery-1.9.1.js" type="text/javascript"></script> 
         <script src="js/libraries/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script> 
         <script src="js/libraries/jquery.ui.touch-punch.min.js" type="text/javascript"></script> 
         <script src="js/libraries/TweenMax.min.js" type="text/javascript"></script> 

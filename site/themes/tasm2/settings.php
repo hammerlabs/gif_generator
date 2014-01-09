@@ -3,17 +3,18 @@ error_reporting(E_ALL);
 
 $title = "The Amazing Spider-Man&trade; Gif Generator"; 
 $desc = "Check out the latest news, videos and photos for The Amazing Spider-Man 2&trade;!"; 
-$url = "http://theamazingspiderman2blog.tumblr.com/"; 
-$image = "http://flash.sonypictures.com/shared/movies/theamazingspiderman/facebook/fb_share_tasm.jpg"; 
+$url = "//theamazingspiderman2blog.tumblr.com/"; 
+$image = "//flash.sonypictures.com/shared/movies/theamazingspiderman/facebook/fb_share_tasm.jpg"; 
 $facebook_url = "https://www.facebook.com/PompeiiMovie";    
 $keywords = "The Amazing Spider-Man 2, Spider-Man, superhero, Sony Pictures, Peter Parker, comic, Marc Webb, Andrew Garfield, Emma Stone, Jamie Foxx, Sally Field, Paul Giamatti, Denis Leary, Dane DeHaan, Martin Sheen, Stan Lee, Marvel, Electro, Rise of Electro, Gwen Stacy, Oscorp, Green Goblin, Rhino";
 $og_title = "The Amazing Spider-Man&trade; Gif Generator";
 $share_tags = "#AmazingSpiderMan2";    
 $share_title = "The Amazing Spider-Man&trade;";    
-$share_content = "The Amazing Spider-Man&trade; share content"; 
+$share_content = "Check out my #PompeiiMovie trailer gif! {tumblr_post} In theaters and 3D February 2014. http://PompeiiMovie.Tumblr.com"; 
+$share_content = "The Amazing Spider-Man&trade; share content {tumblr_post}"; 
 $share_content_tumblr = "The Amazing Spider-Man&trade; tumblr share content"; 
-$share_url = "http://theamazingspiderman2blog.tumblr.com/"; 
-$share_image = "http://flash.sonypictures.com/shared/movies/theamazingspiderman/facebook/fb_share_tasm.jpg"; 
+$share_url = "//theamazingspiderman2blog.tumblr.com/"; 
+$share_image = "//flash.sonypictures.com/shared/movies/theamazingspiderman/facebook/fb_share_tasm.jpg"; 
 $view_on_wall_link = "/tagged/AmazingSpiderMan2";
 $font1 = "Lato";
 $font2 = "Lato";
@@ -21,12 +22,11 @@ $video_width = 640;
 $video_height = 266;
 $output_video_width = 400;
 $output_video_height = 166;
-$gif_max_frames = 10;  
-$frame_delay = 15; // time between frames in the output animation, value is 100ths of a second
+$gif_frames = 10;  // how many frames can be in the animation?
 $duration = 3611; // whats the number of files in the frames folder?
-$watermark_src = "themes/".$theme."/watermark.png"; 
+$watermark_src = "themes/".$theme."/watermark.png"; //image gets aligned to bottom left
 $user_images_folder = "gifs";
-$btn_rollovers = "";
+$btn_rollovers = false;
 
 $_environments_list = array(
 	'testing' => array(
@@ -44,7 +44,8 @@ setEnvironment($_environments_list);
 switch (ENVIRONMENT) {
 	case 'development':
 		define("CDN", "../cdn/");
-		define("BLOGNAME", "theamazingspiderman2blogdev.tumblr.com");
+		define("FB_APP_ID", "1493005874258521");
+		define("BLOGNAME", "tasm2gifdev.tumblr.com");
 		define("CONSUMER_KEY", "CTz2LZ01VUTVhdoib2XM9wDvdE5bphn9wmsi3zyTmYrtmTuMhD");
 		define("CONSUMER_SECRET", "hod74WSG3ZLRJs2tdOO0FWRuxt4gRRyxnzJbj2auC9E4FD5iI0");
 		define("OAUTH_TOKEN", "ri7IoyC2uNo56yRdXE4qgzAMepQPdaHt28FLEBXYu6kSSb2ixv");
@@ -57,6 +58,7 @@ switch (ENVIRONMENT) {
 		$debugging = false; 
 		$tracking = true; 
 		define("CDN", "//stage.sonypictures.com/origin-flash/movies/tasm2/tumblr/gifgenerator/");
+		define("FB_APP_ID", "1493005874258521");
 		define("BLOGNAME", "theamazingspiderman2blogdev.tumblr.com"); 
 		define("CONSUMER_KEY", "VTrFOn4QnQvbFZ8T99yzbA1uEbITTvjZOxHhdBJ6b5sZvTElwe");
 		define("CONSUMER_SECRET", "dRtvkuC0CrNNFelkomO7h1kiNwHQBW0BhzNWUQ4j7QFRt0v9Qw");
@@ -71,6 +73,7 @@ switch (ENVIRONMENT) {
 		$tracking = true; 
 		error_reporting(0);
 		define("CDN", "//flash.sonypictures.com/movies/tasm2/tumblr/gifgenerator/");    
+		define("FB_APP_ID", "1493005874258521");
 		define("BLOGNAME", "theamazingspiderman2blog.tumblr.com");            
 		define("CONSUMER_KEY", "AEbtgNWSbnRCFndfKHbs3BbokGwxtcPcOM9QG4ZiAGN0EzjRcy");
         define("CONSUMER_SECRET", "4ZkUP7sKzno9I2uvuFTh1UQUCAxZHNj8wrRptIiQJxXpiZFBzB");
@@ -85,6 +88,7 @@ switch (ENVIRONMENT) {
 }
 
 $share_blogname = BLOGNAME; 
+$share_fb_app_id = FB_APP_ID; 
 //$preload = createImagePreload("assets/img");
 $webroot = curPagePath(); 
 
