@@ -50,7 +50,6 @@
     <meta property="og:site_name" content="<?php echo $title; ?>" />
     <link href="js/libraries/video-js/video-js.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="theme_style.php?theme=<?php echo $theme;?>" />
-    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />
     <script type="text/javascript">
         <?php echo "var config = ". json_encode($config) . ";";?>  
     </script>

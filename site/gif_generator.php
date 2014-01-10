@@ -39,15 +39,15 @@ function getGifParam($name, $default, $min, $max) {
 function buildGif() {
 
 	//ini_set( 'memory_limit', '32M' );
-
-	$duration = $GLOBALS['duration'];
-	$start = getGifParam("s", 1745, 0, $duration);
-	$end = getGifParam("e", 1817, $start + 1, $start + 80);
-
 	$gif_name = $GLOBALS['theme']."_gif_".date("U").".gif";     
 	$width = $GLOBALS['output_video_width'];
 	$height = $GLOBALS['output_video_height'];
 	$gif_frames = $GLOBALS['gif_frames'];  
+
+	$duration = $GLOBALS['duration'];
+	$start = getGifParam("s", 1745, 0, $duration);
+	$end = getGifParam("e", 1817, $start + $gif_frames, $start + 80);
+
 	$clip_duration = $end - $start;
 	$gif_frame_rate = floor( $clip_duration / $gif_frames );//$GLOBALS['gif_frame_rate'];  
 	$frame_delay = floor( (($clip_duration - $gif_frames) * 2.5) / $gif_frames );//$GLOBALS['frame_delay'];

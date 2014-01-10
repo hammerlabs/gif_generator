@@ -108,7 +108,7 @@ body {
 	margin: 0px auto 30px;
 	background-position: 50% 50%;
 	background-repeat: no-repeat no-repeat;
-	background-image: url(@{cdn}images/slder_holder_background.png);
+	background-image: url(@{cdn}themes/@{theme}/images/slider_holder_background.png);
 }
 .step_2 #slider_holder {
 	display: block;
@@ -117,6 +117,33 @@ body {
 	width: @video_width - 200;
 	height: 30px;
 	margin: 0px auto;
+	background-image: url(@{cdn}themes/@{theme}/images/slider_background.png);
+	border: 1px solid #868686;
+	border-radius: 4px;
+	position: relative;
+	text-align: left;
+}
+#slider_range .ui-slider-range {
+	background-image: url(@{cdn}themes/@{theme}/images/slider-range.png);
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}
+#slider_range .ui-slider-handle {
+	background: url(@{cdn}themes/@{theme}/images/dragger.png) 50% 50%;
+	border: none;
+	height: 49px;
+	top: -10px;
+	width: 26px;
+	margin-left: -11px;
+	position: absolute;
+	z-index: 2;
+}
+#slider_range .ui-slider-handle:focus {
+	outline: none;
 }
 #slider_instructions {	
 	color: #959595;
@@ -196,16 +223,16 @@ body {
 	background-repeat: no-repeat no-repeat;
 }
 .step_3 #facebook_btn.social_btn {
-	background-image: url(@{cdn}images/facebook_btn.png);
+	background-image: url(@{cdn}themes/@{theme}/images/facebook_btn.png);
 }
 .step_3 #twitter_btn.social_btn {
-	background-image: url(@{cdn}images/twitter_btn.png);
+	background-image: url(@{cdn}themes/@{theme}/images/twitter_btn.png);
 }
 .step_3 #pinterest_btn.social_btn {
-	background-image: url(@{cdn}images/pinterest_btn.png);
+	background-image: url(@{cdn}themes/@{theme}/images/pinterest_btn.png);
 }
 .step_3 #tumblr_btn.social_btn {
-	background-image: url(@{cdn}images/tumblr_btn.png);
+	background-image: url(@{cdn}themes/@{theme}/images/tumblr_btn.png);
 	margin: 0px 0px 0px 0px;
 }
 .step_3 #user_gif {
