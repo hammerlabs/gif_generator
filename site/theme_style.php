@@ -20,4 +20,4 @@ $less->setVariables(array(
   "output_video_height" => $output_video_height."px"
 ));
 header('Content-Type: text/css');
-echo $less->compileFile("themes/".$theme."/main.less");
+echo $less->compileFile($theme_less_file);
