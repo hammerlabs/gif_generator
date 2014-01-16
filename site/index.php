@@ -65,7 +65,7 @@
         <script src="js/libraries/modernizr.js" type="text/javascript"></script> 
         <script src="js/site/share.js" type="text/javascript"></script> 
         <script src="js/site/site.js" type="text/javascript"></script> 
-        <script src="themes/<?php echo $theme;?>/lang-<?php echo $theme;?>-<?php echo $lang;?>.js" type="text/javascript"></script>
+        <script src="themes/<?php echo $theme;?>/lang-<?php echo $lang;?>.js" type="text/javascript"></script>
         
         <div id="site_holder">
             <div id="site_content">

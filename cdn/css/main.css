@@ -1,0 +1,232 @@
+body {
+	background-color: rgb(37, 37, 37); 
+	margin: 0px; 
+	width: 100%; 
+	height: 100%;
+	font-family: 'Raleway', sans-serif;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+a.button.selected, a.button:hover {
+	background-color: #ffc500; 
+	color: #000000; 
+}
+a.button {
+	background-color: #5a5a5a; 
+	padding: 8px; 
+	padding-top: 4px; 
+	font-family: Baumans; 
+	font-size: 18px; 
+	color: #d1d1d1; 
+	text-align: center; 
+	margin: 0; 
+	cursor: pointer; 
+	display: inline-block;
+	width: 130px;
+	height: 18px;
+	border-bottom-left-radius: 2px; 
+	border-bottom-right-radius: 2px; 
+	border-top-right-radius: 2px; 
+	border-top-left-radius: 2px;
+	text-decoration: none; 
+}
+#site_holder {
+	background-color: rgb(37, 37, 37); 
+	width: 100%; 
+	height: 100%;
+}
+#site_content {
+	margin: 0px auto; 
+	background-color: rgb(37, 37, 37); 
+	width: 680px; 
+	height: 500px; 
+	padding: 0px;
+}
+#title {
+	font-size: 36px; 
+	color: rgb(255, 197, 0); 
+	font-family: Baumans; 
+	border-bottom-width: 1px; 
+	border-bottom-style: solid; 
+	border-bottom-color: rgb(255, 197, 0); 
+	margin: 0px auto 10px; 
+	text-align: center;
+}
+.close{
+	width: 33px;
+	height: 31px;
+	background-image: url(../img/close.png);
+	cursor: pointer;
+	position: relative;
+	top: 27px;
+	left: 305px;
+	display: none;
+}
+.legal {
+	color: #d7d7d7;
+	font-size: 10px;
+	float: right;
+	width: 300px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+a.terms, a.terms:visited, a.terms:active {
+	color: #d7d7d7;
+}
+.button.sample {
+	float: right;
+	margin-left: 10px;
+}
+.button.submit {
+	clear: both;
+	float: right;
+	margin-left: 10px;
+}
+.share_image.sample {
+	background-image: url(../img/sample.jpg);
+}
+.share_image.sample1 {
+	background-image: url(../img/sample1.jpg);
+}
+.share_image.sample {
+	background-image: url(../img/sample.jpg);
+}
+.share_image {
+	width: 368px;
+	height: 368px;
+	background-image: url(../img/base-image.jpg);
+	float: left;
+	background-size: contain;
+}
+.inputbox.sample {
+	background-image: url(../img/textarea-sample-bg.png);
+}
+.inputbox.sample textarea {
+	display: none;
+}
+.inputbox.sample .charleft {
+	display: none;
+}
+.inputbox.error {
+	background-image: url(../img/textarea-error-bg.png);
+}
+.inputbox.error textarea {
+	color: #FFFFFF;
+}
+.inputbox {
+	background-image: url(../img/textarea-bg.png);
+	width: 275px;
+	height: 245px;
+	padding: 15px;
+	padding-bottom: 30px;
+	background-repeat: no-repeat;
+	float: right;
+}
+textarea {
+	width: 270px;
+	height: 245px;
+	background-color: transparent;
+	border: none;
+	color: #959595;
+	font-family: 'Raleway', sans-serif;
+	resize: none;
+	text-transform: uppercase;
+}
+.originalDisplayInfo {
+	color: #959595;
+	font-size: 10px;
+	margin-top: 4px;
+}
+.warningDisplayInfo {
+	color: red;
+	font-size: 10px;
+	margin-top: 4px;
+}
+.preview_holder {
+	margin: 22px;
+	height: 132px;
+	position: absolute; 
+}
+.preview_text {
+	color: #cfcfcf;
+	font-size: 16px;
+	width: 322px;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	line-height: 26px;
+	text-transform: uppercase;
+	overflow: hidden;
+}
+.info {
+	color: #d7d7d7;
+	font-size: 13px;
+	float: right;
+	width: 300px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+#loading {
+	display: none;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	font-size: 24px;
+	color: white;
+	text-transform: uppercase;
+	margin-top: 100px;
+	font-weight: bold;
+}
+#step2 {
+	display: none;
+}
+#step2 .inputbox {
+	color: white;
+	font-size: 20px;
+}
+#step2 .shareimage {
+	background-image: url(../img/base-image.jpg);
+}
+.button {
+	margin-left: 6px;
+}
+.button.seeall {
+	float: left;
+	display: block;
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 100px;
+}
+.button.back {
+	float: right;
+	margin-top: 10px;
+	width: 160px;
+}
+.social_holder {
+	float: right;
+	margin-top: 14px;
+}
+.social {
+	background-repeat: no-repeat;
+	width: 48px;
+	height: 45px;
+	display: inline-block;
+	margin-right: 12px;
+	cursor: pointer;
+}
+.social.facebook {
+	background-image: url(../img/facebook.png);
+}.social.twitter {
+	background-image: url(../img/twitter.png);
+}.social.tumblr {
+	background-image: url(../img/tumblr.png);
+}.social.google {
+	background-image: url(../img/google.png);
+}.social.pinterest {
+	background-image: url(../img/pinterest.png);
+	margin-right: 0px;
+}

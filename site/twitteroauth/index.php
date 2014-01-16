@@ -1,6 +1,6 @@
 <?php
 // use composers autoload if it exists, or require directly if not
-require_once('../settings.php');    
+require_once('../includes/settings.php');
 
 require __DIR__.DIRECTORY_SEPARATOR.'tmhOAuthIHustle.php';
 $tmhOAuth = new tmhOAuthIHustle();

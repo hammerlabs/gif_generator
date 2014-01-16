@@ -49,8 +49,8 @@ function buildGif() {
 	$end = getGifParam("e", 1817, $start + $gif_frames, $start + 80);
 
 	$clip_duration = $end - $start;
-	$gif_frame_rate = floor( $clip_duration / $gif_frames );//$GLOBALS['gif_frame_rate'];  
-	$frame_delay = floor( (($clip_duration - $gif_frames) * 2.5) / $gif_frames );//$GLOBALS['frame_delay'];
+	$gif_frame_rate = floor( $clip_duration / $gif_frames );
+	$frame_delay = floor( (($clip_duration - $gif_frames) * 3.5) / $gif_frames );
 
 	$watermark = new Imagick();
 	$watermark->readImage($GLOBALS['watermark_src']);
@@ -64,8 +64,9 @@ function buildGif() {
 
 	for($i=$start;$i<$end;$i=$i+$gif_frame_rate) {
 		$image_id = "themes/".$GLOBALS['theme']."/frames/frames_" . $i . ".jpg"; 
-	    $frame = new Imagick();
-	    $frame->readImage($image_id);
+		error_log( $i );
+		$frame = new Imagick();
+		$frame->readImage($image_id);
 		//$frame->resizeImage($width,$height,Imagick::FILTER_LANCZOS,1);    
 		$frame->compositeImage( $watermark, Imagick::COMPOSITE_DEFAULT, 0, $watermark_y );
 		$frame->setImageDelay($frame_delay);

@@ -1,5 +1,11 @@
 <?php
 require_once 'includes/settings.php';   
+$theme_less_file = "{$site_base_folder}themes/{$theme}/main.less"; 
+if (!file_exists($theme_less_file))  {
+	error_log("invalid less path for '{$theme}' no main.less file found at {$theme_less_file}", 0);
+	exit;
+}
+
 require_once('includes/lessc.php');    
 $less = new lessc;
 $less->setVariables(array(
@@ -14,4 +20,4 @@ $less->setVariables(array(
   "output_video_height" => $output_video_height."px"
 ));
 header('Content-Type: text/css');
-echo $less->compileFile("themes/".$theme."/".$theme.".less");
+echo $less->compileFile("themes/".$theme."/main.less");

@@ -5,7 +5,7 @@
 
 <?php        
 
-require_once '../settings.php';   
+require_once('../includes/settings.php');
 require_once '../includes/browser_helper.php';    
 
 $config = array(
@@ -46,7 +46,7 @@ $config = array(
         <link href='http://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
         <link href='../<?php echo CDN;?>css/normalize.min.css' rel='stylesheet' type='text/css'>
         <link href='../<?php echo CDN;?>css/main.css' rel='stylesheet' type='text/css'>
-        <link href='<?php echo CDN;?>css/mobile.css' rel='stylesheet' type='text/css'>
+        <link href='../<?php echo CDN;?>css/mobile.css' rel='stylesheet' type='text/css'>
 
     </head>
     <body>

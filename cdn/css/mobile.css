@@ -1,0 +1,115 @@
+@media screen (max-width: 640px) {
+	::-webkit-input-placeholder {
+	   font-size: 8px;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   font-size: 8px;
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   font-size: 8px;
+	}
+
+	:-ms-input-placeholder {  
+	   font-size: 8px;
+	}
+	body {
+		width: 100%;
+	}
+	#site_content {
+		width: auto;
+	}
+	#title {
+		font-size: 1.2em;
+	}
+	.share_image {
+		width: 120px;
+		height: 120px;
+	}
+	/*
+	.preview_holder {
+		margin: auto;
+		width: 120px;
+		height: 35px;
+		overflow: hidden;
+		line-height: 15px;
+		top: 47px;
+	}
+	.preview_text {
+		font-size: .5em;
+		width: 120px;
+		height: 120px;
+		top: 0;
+		line-height: 1.2em;
+	}
+	*/
+	.preview_holder {
+		margin-left: 0;
+	}
+	.preview_text {
+		width: 110px;
+		font-size: 6px;
+		line-height: 1.5em;
+		bottom: 103px;
+		left: 5px;
+	}
+	.inputbox {
+		width: 135px;
+		height: 70px;
+		float: left;
+		background-image: none;
+		background: #424242;
+		border-radius: 8px;
+		border: 2px solid #5C5C5C;
+		background-size: cover;
+		margin-left: 13px; 
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	textarea {
+		width: 120px;
+		height: 68px;
+		font-size: .5em;
+	}
+	.originalDisplayInfo {
+		width: 120px;
+		font-size: 8px;
+	}
+	.legal {
+		width: auto;
+	}
+	.button.submit, .button.sample {
+		float: right;
+	}
+	.button.sample {
+		margin-left: 0;
+	}
+	.button.submit {
+		margin-left: 20px;
+	}
+	a.button {
+		width: 115px;
+	}
+	.close {
+		display: none !important;
+	}
+	#loading {
+		margin-top: 20px;
+	}
+
+	#step2 .inputbox {
+		font-size: 10px;
+	}
+	.social {
+		width: 43px;
+		height: 41px;
+		margin-right: 13px;
+		background-size: cover;
+	}
+	.button.seeall {
+		margin-left: 0;
+		width: 80px;
+		clear: both;
+	}
+}

@@ -88,9 +88,9 @@ class tmhOAuthIHustle extends tmhOAuth {
 
   private function getRequestToken() {  
       // send request for a request token  
+      $protocol = strtolower(array_shift(explode("/", $_SERVER["SERVER_PROTOCOL"]))); 
       $this->request("POST", $this->url("oauth/request_token", ""), array(  
           // pass a variable to set the callback  
-          $protocol = strtolower(array_shift(explode("/", $_SERVER["SERVER_PROTOCOL"]))); 
           'oauth_callback' => $protocol."://".$_SERVER["HTTP_HOST"].filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_URL)
       ));  
 
