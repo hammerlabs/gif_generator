@@ -26,14 +26,14 @@ if(!empty($_GET["e"])) {
 } 
 
 // Define the needed keys
-$consumer_key = "CTz2LZ01VUTVhdoib2XM9wDvdE5bphn9wmsi3zyTmYrtmTuMhD";
-$consumer_secret = "hod74WSG3ZLRJs2tdOO0FWRuxt4gRRyxnzJbj2auC9E4FD5iI0";
+$consumer_key = "Iup9Pr4yf7bCHiaOsYZIZp7gw2wWcINojW2x0hlHu1vTQlLras";
+$consumer_secret = "RayeOlOvWDVAp2SKQmA6ZBsUWxw4wpIPlojkNbkO9UU4rTccns";
 
 // The callback URL is the script that gets called after the user authenticates with tumblr
 // In this example, it would be the included callback.php
 //$callback_url = "http://cdn-dev.triggerglobal.com/sony/americanhustle/gif_creator/cdn/callback.php?s=" . $start . "&e=" . $end;
 //$callback_url = "http://cdn-dev.triggerglobal.com/sony/americanhustle/gif_generator/callback.php";  
-$callback_url = "http://www.americanhustle-movie.com/tumblr/gifgenerator/callback.php";  
+$callback_url = "http://stage.sonypictures.com/origin-flash/movies/pompeii/tumblr/gifgenerator/callback.php";  
 // Let's begin.  First we need a Request Token.  The request token is required to send the user
 // to Tumblr's login page.
 

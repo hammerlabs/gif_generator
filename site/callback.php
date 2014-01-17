@@ -8,8 +8,8 @@ if(!empty($_GET["d"])) $duration = htmlspecialchars($_GET["d"]);
 	
 
 // Define the needed keys
-$consumer_key = "CTz2LZ01VUTVhdoib2XM9wDvdE5bphn9wmsi3zyTmYrtmTuMhD";
-$consumer_secret = "hod74WSG3ZLRJs2tdOO0FWRuxt4gRRyxnzJbj2auC9E4FD5iI0";
+$consumer_key = "Iup9Pr4yf7bCHiaOsYZIZp7gw2wWcINojW2x0hlHu1vTQlLras";
+$consumer_secret = "RayeOlOvWDVAp2SKQmA6ZBsUWxw4wpIPlojkNbkO9UU4rTccns";
 
 // Once the user approves your app at Tumblr, they are sent back to this script.
 // This script is passed two parameters in the URL, oauth_token (our Request Token)

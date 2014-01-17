@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 
 $title = "Pompeii - Gif Generator"; 
 $desc = "Get updates on Paul W.S. Anderson's action drama, Pompeii, starring Kit Harington, Emily Browning and Kiefer Sutherland. In theaters 2014."; 
-$url = "http://pompeiimovie.tumblr.com/"; 
+$url = "http://pompeiimoviedev.tumblr.com/"; 
 $image = "http://flash.sonypictures.com/movies/pompeii/share/tumblr/pompeii_share.jpg"; 
 $facebook_url = "https://www.facebook.com/PompeiiMovie";    
 $keywords = "Pompeii,Mt. Vesuvius,Paul W.S. Anderson,Action,Drama,Emily Browning,Kit Harington,Carrie-Anne Moss,Kiefer Sutherland,Paz Vega,Jessica Lucas,Sony Pictures,FilmDistrict,TriStar Pictures,Constantin Film";
@@ -11,7 +11,7 @@ $og_title = "Pompeii – Official Movie Tumblr Site";
 $share_tags = "#PompeiiGifs";    
 $share_title = "Pompeii - Gif Generator";    
 $share_content = "Check out my #PompeiiMovie trailer gif! {tumblr_post} In theaters and 3D February 2014. http://PompeiiMovie.Tumblr.com"; 
-$share_url = "http://pompeiimovie.tumblr.com/"; 
+$share_url = "http://pompeiimoviedev.tumblr.com/"; 
 $share_image = "http://flash.sonypictures.com/movies/pompeii/share/tumblr/pompeii_share.jpg"; 
 $view_on_wall_link = "/tagged/pompeiigifs";
 $font1 = "goudytrajanregular";
@@ -68,15 +68,15 @@ switch (ENVIRONMENT) {
 	case 'testing':
 		$debugging = false; 
 		$tracking = true; 
-		define("CDN", "//stage.sonypictures.com/origin-flash/movies/pompeii/tumblr/gifgenerator/");
-		define("FB_APP_ID", "1493005874258521");
+		define("CDN", "//stage.sonypictures.com/origin-flash/movies/pompeii/tumblr/gifgenerator/cdn");
+		define("FB_APP_ID", "520166038104384");
 		define("BLOGNAME", "pompeiimoviedev.tumblr.com"); 
-		define("CONSUMER_KEY", "VTrFOn4QnQvbFZ8T99yzbA1uEbITTvjZOxHhdBJ6b5sZvTElwe");
-		define("CONSUMER_SECRET", "dRtvkuC0CrNNFelkomO7h1kiNwHQBW0BhzNWUQ4j7QFRt0v9Qw");
-		define("OAUTH_TOKEN", "ojLMdByU0IyDKCaMZHyq84Tifg8DxoMQzaYnfvlKsizqu0GSZs");
-		define("OAUTH_SECRET", "EYBF7qfIfzbEgbj1Aw3Dq2XosPha4YWGfDh9ktqBJt6SO0exti"); 
-		define("TWITTER_CONSUMER_KEY", "gUrBZNK9SUVHeH1VBhqA"); 
-		define("TWITTER_CONSUMER_SECRET", "bgTEFkMMBX9QwAR7U9RcSLtiz0ndPT6X1w1gk3i7o"); 
+		define("CONSUMER_KEY", "Iup9Pr4yf7bCHiaOsYZIZp7gw2wWcINojW2x0hlHu1vTQlLras");
+		define("CONSUMER_SECRET", "RayeOlOvWDVAp2SKQmA6ZBsUWxw4wpIPlojkNbkO9UU4rTccns");
+		define("OAUTH_TOKEN", "HPyeEAtW3icbNiQrNMzRJjtDQ30ldjFnrHyDnLy497pMvqvYMp");
+		define("OAUTH_SECRET", "wllBGCGoavWihFSCUtiyTS6SRPgeZ3TXAGogoJalXP2ahzIrm7");
+		define("TWITTER_CONSUMER_KEY", "EIkvOZZj7xImkdMo8Mk8Q"); 
+		define("TWITTER_CONSUMER_SECRET", "noQofB9kSti6vbUvSKPxkRESNsbrzn2YT5a9zEKu5Q"); 
 		break;
 
 	case 'production':
@@ -84,14 +84,14 @@ switch (ENVIRONMENT) {
 		$tracking = true; 
 		error_reporting(0);
 		define("CDN", "//flash.sonypictures.com/movies/pompeii/tumblr/gifgenerator/");    
-		define("FB_APP_ID", "1493005874258521");
+		define("FB_APP_ID", "670246689694504");
 		define("BLOGNAME", "pompeiimovie.tumblr.com");            
 		define("CONSUMER_KEY", "AEbtgNWSbnRCFndfKHbs3BbokGwxtcPcOM9QG4ZiAGN0EzjRcy");
         define("CONSUMER_SECRET", "4ZkUP7sKzno9I2uvuFTh1UQUCAxZHNj8wrRptIiQJxXpiZFBzB");
         define("OAUTH_TOKEN", "mIOEofDsVlL4aVAURn3fkDLndzomAEYj7WOaw5fGpgWnUvrvlS");
         define("OAUTH_SECRET", "Fav0av6joZXZYKZSiPj9PLsLvkP4h6h2eeqwPIpA6GJByhScxI");
-        define("TWITTER_CONSUMER_KEY", "6HdHkNJAP8K8XCdWXgwteg");
-        define("TWITTER_CONSUMER_SECRET", "AIJ2q44oskbVYSFY8cX4N5nuNFsZpuEux7sbM3DfTeM"); 
+        define("TWITTER_CONSUMER_KEY", "Zet422Y7W10xlBtu9ocgmA");
+        define("TWITTER_CONSUMER_SECRET", "A67bq805xArO5QJCEkeDGOZroVDt0mV713dwmDNxjow"); 
 		break;
 
 	default:
