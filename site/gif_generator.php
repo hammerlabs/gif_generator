@@ -25,16 +25,13 @@ function meminuse( $l ) {
 }
 
 function getGifParam($name, $default, $min, $max) {
-	$value = $default;
-	if(!empty($_GET[$name])) $value = htmlspecialchars($_GET[$name]);   
-	if ( is_numeric( $value ) && $value > 0 ) {
-		if($value < $min){
-			$value = $min;
-		}else if($value > $max){
-			$value = $max;
-		}
-	} else {$value = $default;}
-	return $value;
+    $value = htmlspecialchars(intval($_GET[$name]));
+    if($value < $min){
+        $value = $default;
+    }else if($value > $max){
+        $value = $default;
+    }
+    return $value;
 }
 function buildGif() {
 
