@@ -33,7 +33,7 @@ function getGifParam($name, $default, $min, $max) {
 		}else if($value > $max){
 			$value = $max;
 		}
-	} 
+	} else {$value = $default;}
 	return $value;
 }
 function buildGif() {
